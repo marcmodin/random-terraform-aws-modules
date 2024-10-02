@@ -8,7 +8,7 @@ data "aws_availability_zones" "available" {
 
 # Preview next CIDR from pool
 data "aws_vpc_ipam_preview_next_cidr" "default" {
-  count = var.ipv4_cidr_block == null ? 1 : 0
+  count          = var.ipv4_cidr_block == null ? 1 : 0
   ipam_pool_id   = var.ipv4_ipam_pool_id
   netmask_length = 25
 }
@@ -98,10 +98,9 @@ resource "aws_default_network_acl" "default" {
 ####################################################################
 
 locals {
-
-  az_to_use = slice(data.aws_availability_zones.available.zone_ids, 0, local.existing_az_count)
-
-  cidr_netmask = tonumber(split("/", local.vpc_cidr_block)[1])
+  az_to_use                = slice(data.aws_availability_zones.available.zone_ids, 0, local.existing_az_count)
+  vpc_allocated_cidr_block = aws_vpc.default.cidr_block
+  cidr_netmask             = tonumber(split("/", local.vpc_allocated_cidr_block)[1])
 
   # multiply the number of networks by the number of zones to get the total number of subnets to create, while also calculating the new bits for each subnet. (Important: this needs to produce a list, to ensure ordering is preserved)
   networks_netmask_to_bits = flatten([for idx, network in local.networks : [for _, zone in local.az_to_use : {
@@ -109,11 +108,13 @@ locals {
     "zone"     = zone,
     "new_bits" = tonumber(network.netmask - local.cidr_netmask)
     "group"    = network.name,
+    # "access_rule" = network.access_rule
+    # "allow"       = network.allow
     }]
   ])
 
   # calculate the cidr blocks for every subnet based on the new bits
-  cidr_by_bits = cidrsubnets(local.vpc_cidr_block, local.networks_netmask_to_bits[*].new_bits...)
+  cidr_by_bits = cidrsubnets(local.vpc_allocated_cidr_block, local.networks_netmask_to_bits[*].new_bits...)
 
   # create a list of network objects to pass to the subnet module
   network_objs = [for i, n in local.networks_netmask_to_bits : {
@@ -121,6 +122,8 @@ locals {
     availability_zone_id = n.zone
     cidr_block           = n.name != null ? local.cidr_by_bits[i] : tostring(null)
     group                = n.group
+    # access_rule          = n.access_rule
+    # allow                = n.allow
   }]
 
   # create a map of network name to cidr block for easy lookup

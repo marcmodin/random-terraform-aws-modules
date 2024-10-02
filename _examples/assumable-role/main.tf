@@ -3,8 +3,8 @@
 data "aws_caller_identity" "current" {}
 
 locals {
-    account_id = data.aws_caller_identity.current.account_id
-    root_arn   = "arn:aws:iam::${local.account_id}:root"
+  account_id = data.aws_caller_identity.current.account_id
+  root_arn   = "arn:aws:iam::${local.account_id}:root"
 }
 
 #########################################
@@ -13,9 +13,9 @@ locals {
 
 data "aws_iam_policy_document" "assumable_role" {
   statement {
-    sid       = "AllowGetCallerIdentity"
-    actions   = [
-        "sts:GetCallerIdentity"
+    sid = "AllowGetCallerIdentity"
+    actions = [
+      "sts:GetCallerIdentity"
     ]
     resources = ["*"]
   }
@@ -23,8 +23,8 @@ data "aws_iam_policy_document" "assumable_role" {
 
 resource "aws_iam_policy" "assumable_role" {
 
-  name = format("%s-role-policy", var.name_prefix)
-  policy      = data.aws_iam_policy_document.assumable_role.json
+  name   = format("%s-role-policy", var.name_prefix)
+  policy = data.aws_iam_policy_document.assumable_role.json
 }
 
 module "assumable_role" {
@@ -56,7 +56,7 @@ module "assumable_role" {
 #########################################
 
 module "iam_read_only_policy" {
-  source  = "terraform-aws-modules/iam/aws//modules/iam-read-only-policy"
+  source = "terraform-aws-modules/iam/aws//modules/iam-read-only-policy"
 
   name        = format("%s-policy-with-read-only", var.name_prefix)
   path        = "/"
@@ -99,22 +99,22 @@ EOF
 
 data "aws_iam_policy_document" "iam_policy_from_data_source" {
   statement {
-    sid       = "AllowKMSKeyUsage"
-    actions   = [
-        "kms:ListKeys",
-        "kms:DescribeKey",
-        "kms:Decrypt",
-        "kms:GetKeyPolicy"
+    sid = "AllowKMSKeyUsage"
+    actions = [
+      "kms:ListKeys",
+      "kms:DescribeKey",
+      "kms:Decrypt",
+      "kms:GetKeyPolicy"
     ]
     resources = ["*"]
   }
 }
 
 module "iam_policy_from_data_source" {
-  source = "terraform-aws-modules/iam/aws//modules/iam-policy"
+  source      = "terraform-aws-modules/iam/aws//modules/iam-policy"
   name        = format("%s-policy-from-data-source", var.name_prefix)
   path        = "/"
   description = "Policy using from data source json"
-  policy = data.aws_iam_policy_document.iam_policy_from_data_source.json
-  tags = {}
+  policy      = data.aws_iam_policy_document.iam_policy_from_data_source.json
+  tags        = {}
 }

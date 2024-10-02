@@ -45,9 +45,9 @@ data "aws_vpc_ipam_pool" "default" {
 }
 
 module "vpc" {
-  source          = "../../vpc"
-  name_prefix     = var.name_prefix
-  ipv4_ipam_pool_id    = data.aws_vpc_ipam_pool.default.id
+  source            = "../../vpc"
+  name_prefix       = var.name_prefix
+  ipv4_ipam_pool_id = data.aws_vpc_ipam_pool.default.id
 
   max_zones = 2
   networks = [

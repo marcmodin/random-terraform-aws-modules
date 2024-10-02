@@ -1,9 +1,9 @@
 
 module "vpc" {
-  source      = "../../vpc"
-  name_prefix = var.name_prefix
+  source          = "../../vpc"
+  name_prefix     = var.name_prefix
   ipv4_cidr_block = "172.31.0.0/25"
-  max_zones = 2
+  max_zones       = 2
   networks = [
     {
       name    = "management"
