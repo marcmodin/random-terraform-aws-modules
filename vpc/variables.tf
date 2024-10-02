@@ -27,15 +27,9 @@ variable "ipv4_cidr_block" {
   default     = null
 }
 
-variable "ipv4_cidr_block_association" {
-  type = object({
-    ipv4_ipam_pool_id   = string
-    ipv4_netmask_length = optional(number, null)
-  })
-  description = <<-EOT
-    Configuration of the VPC's primary IPv4 CIDR block via IPAM. Conflicts with `ipv4_cidr_block`.
-    One of `ipv4_cidr_block` or `ipv4_cidr_block_association` must be set.
-    EOT
+variable "ipv4_ipam_pool_id" {
+  type        = string
+  description = "IPAM pool ID to use for the VPC. Conflicts with `ipv4_cidr_block`. One of `ipv4_cidr_block` or `ipv4_ipam_pool_id` must be set."
   default     = null
 }
 

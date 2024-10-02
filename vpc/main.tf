@@ -6,10 +6,21 @@ data "aws_availability_zones" "available" {
 }
 
 
+# Preview next CIDR from pool
+data "aws_vpc_ipam_preview_next_cidr" "default" {
+  count = var.ipv4_cidr_block == null ? 1 : 0
+  ipam_pool_id   = var.ipv4_ipam_pool_id
+  netmask_length = 25
+}
+
 locals {
   region = data.aws_region.this.name
 
-  vpc_cidr_block = var.ipv4_cidr_block
+  # Check if IPAM is enabled
+  ipam_enabled = var.ipv4_ipam_pool_id != null && var.ipv4_cidr_block == null
+
+  # Determine the appropriate CIDR block to use
+  vpc_cidr_block = var.ipv4_cidr_block != null ? var.ipv4_cidr_block : try(data.aws_vpc_ipam_preview_next_cidr.default[0].cidr, null)
 
   existing_az_count = var.max_zones != null ? var.max_zones : length(data.aws_availability_zones.available.zone_ids)
 
@@ -19,12 +30,13 @@ locals {
     Type  = "vpc-default"
     Usage = "default do not use"
   }
-
 }
 
-# create the VPC, TODO: add more options
+# create the VPC
 resource "aws_vpc" "default" {
-  cidr_block                           = var.ipv4_cidr_block
+  cidr_block                           = local.vpc_cidr_block
+  ipv4_ipam_pool_id                    = try(var.ipv4_ipam_pool_id, null)
+  ipv4_netmask_length                  = null
   instance_tenancy                     = var.instance_tenancy
   enable_dns_hostnames                 = var.enable_dns_hostnames
   enable_dns_support                   = var.enable_dns_support
@@ -33,9 +45,11 @@ resource "aws_vpc" "default" {
   tags = merge(var.tags, {
     Name = "${var.name_prefix}-vpc"
   })
-}
 
-#TODO: add more options, dhcp options, etc
+  lifecycle {
+    ignore_changes = [cidr_block, ipv4_ipam_pool_id, ipv4_netmask_length]
+  }
+}
 
 ####################################################################
 # Take Control Over Default AWS Created Resources
