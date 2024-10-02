@@ -60,8 +60,6 @@ variable "networks" {
   type = list(object({
     name    = string
     netmask = number
-    # access_rule = optional(string, null)
-    # allow       = optional(list(string), null)
   }))
   description = "A list of objects describing requested subnetwork prefixes. netmask is the requested subnetwork cidr to slice from base_cidr_block"
   default     = []

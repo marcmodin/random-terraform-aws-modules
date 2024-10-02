@@ -67,17 +67,6 @@ resource "aws_route_table" "default" {
   }
 }
 
-# resource "aws_route" "" {
-#   route_table_id              = local.private_route_table_ids[count.index]
-#   destination_ipv6_cidr_block = "::/0"
-#   egress_only_gateway_id      = var.ipv6_egress_only_igw_id[0]
-
-#   timeouts {
-#     create = local.route_create_timeout
-#     delete = local.route_delete_timeout
-#   }
-# }
-
 resource "aws_route_table_association" "default" {
   subnet_id = aws_subnet.default.id
   # Use element() to "wrap around" and allow for a single table to be associated with all subnets

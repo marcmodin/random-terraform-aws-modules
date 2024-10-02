@@ -9,7 +9,6 @@ data "aws_availability_zones" "available" {
 locals {
   region = data.aws_region.this.name
 
-  #TODO: check if IPAM is enabled, and get cidr block from IPAM
   vpc_cidr_block = var.ipv4_cidr_block
 
   existing_az_count = var.max_zones != null ? var.max_zones : length(data.aws_availability_zones.available.zone_ids)
@@ -26,8 +25,6 @@ locals {
 # create the VPC, TODO: add more options
 resource "aws_vpc" "default" {
   cidr_block                           = var.ipv4_cidr_block
-  ipv4_ipam_pool_id                    = try(var.ipv4_cidr_block_association.ipv4_ipam_pool_id, null)
-  ipv4_netmask_length                  = try(var.ipv4_cidr_block_association.ipv4_netmask_length, null)
   instance_tenancy                     = var.instance_tenancy
   enable_dns_hostnames                 = var.enable_dns_hostnames
   enable_dns_support                   = var.enable_dns_support
@@ -98,8 +95,6 @@ locals {
     "zone"     = zone,
     "new_bits" = tonumber(network.netmask - local.cidr_netmask)
     "group"    = network.name,
-    # "access_rule" = network.access_rule
-    # "allow"       = network.allow
     }]
   ])
 
@@ -112,8 +107,6 @@ locals {
     availability_zone_id = n.zone
     cidr_block           = n.name != null ? local.cidr_by_bits[i] : tostring(null)
     group                = n.group
-    # access_rule          = n.access_rule
-    # allow                = n.allow
   }]
 
   # create a map of network name to cidr block for easy lookup
@@ -158,32 +151,6 @@ locals {
       if contains([for subnet in local.subnets_to_create : subnet.name if subnet.group == group], name)
     ]
   }
-
-
-  #TODO: create a more complex access rule object, allowing for more complex rules
-  # such as allowing or denying broad access to/from specific groups
-
-  # generate a map of access rules by groups and subnet
-  # subnets_by_group_with_rule = {
-  #   for group in distinct([for subnet in local.subnets_to_create : subnet.group]) : group => [
-  #     for name, details in local.subnets_created : {
-  #       name = name
-  #       id   = details.id
-  #       # grab the access rule from the first subnet in the group, set default to deny
-  #       access_rule = element(distinct([for subnet in local.subnets_to_create : subnet.access_rule != null ? subnet.access_rule : "deny" if subnet.group == group]), 0)
-  #     }
-  #     if contains([for subnet in local.subnets_to_create : subnet.name if subnet.group == group], name)
-  #   ]
-  # }
-
-  # nacl_rules_network_objs = [for index, network in local.network_objs : {
-  #   group      = network.group
-  #   cidr_block = network.cidr_block
-  #   allowed_groups = {
-  #     groups = network.allow
-  #     cidrs  = flatten([for i, v in network.allow : [for p in local.network_objs : p.cidr_block if p.group == v]])
-  #   }
-  # }]
 }
 
 output "allowed_subnets" {
@@ -198,7 +165,6 @@ module "nacl" {
   name       = format("%s-%s-nacl", var.name_prefix, each.key)
   vpc_id     = aws_vpc.default.id
   subnet_ids = [for i, v in each.value : v.id]
-  # access_rule = lookup(element(each.value, 0), "access_rule")
   tags = merge(var.tags, {
     Class = each.key
   })
