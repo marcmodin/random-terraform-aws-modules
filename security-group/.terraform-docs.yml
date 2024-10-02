@@ -1,0 +1,8 @@
+content: |-
+  {{ .Inputs }}
+
+  {{ .Footer }}
+
+  {{ .Outputs }}
+
+footer-from: VARIABLES.md

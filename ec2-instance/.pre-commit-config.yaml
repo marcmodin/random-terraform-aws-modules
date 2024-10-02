@@ -1,0 +1,12 @@
+repos:
+  - repo: https://github.com/antonbabenko/pre-commit-terraform
+    rev: v1.74.1
+    hooks:
+      - id: terraform_fmt
+      - id: terraform_validate
+        exclude: (\_modules\/.*$|\.terraform\/.*$)
+      - id: terraform_checkov
+        args:
+          - --args=--quiet
+          - --args=--compact
+      - id: terraform_docs

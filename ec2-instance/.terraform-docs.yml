@@ -1,0 +1,46 @@
+content: |-
+  {{ .Header }}
+
+  ### Example
+
+  ```hcl
+  # Get your assigned vpc
+  data "aws_vpcs" "vpc" {}
+
+  data "aws_vpc" "vpc" {
+    id = tolist(data.aws_vpcs.vpc.ids)[0]
+  }
+
+  data "aws_subnet_ids" "subnet" {
+    vpc_id = tolist(data.aws_vpcs.vpc.ids)[0]
+    filter {
+      name   = "availabilityZone"
+      values = ["eu-north-1b"]
+    }
+  }
+
+  # Example how to get Latest Focal Image Ami
+  data "aws_ami" "focal" {
+    executable_users = ["self"]
+    most_recent      = true
+    name_regex       = "^Kambi Focal \\d{3}"
+    owners           = ["self"]
+  }
+
+  module "instance" {
+
+    source = "git@github.com:kambi-sports-solutions/tf-terraform-aws-instance-module.git?ref=v0.0.1"
+
+    name                          = "test-focal-instance"
+    ami_id                        = data.aws_ami.focal.id
+    instance_type                 = "t3.small"
+    vpc_id                        = data.aws_vpc.vpc.id
+    subnet_id                     = tolist(data.aws_subnet_ids.subnet.ids)[0]
+    security_group_ids            = "sg-07bf7639d6b69adbf"
+  }
+
+  ```
+
+  {{ .Inputs }}
+
+  {{ .Outputs }}
