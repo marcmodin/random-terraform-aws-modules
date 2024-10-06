@@ -1,0 +1,21 @@
+name: Pre-Commit Workflow
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [opened, synchronize, reopened]
+    paths:
+      - "**.tf"
+jobs:
+  pre-commit:
+    name: Run Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Run Pre-Commit Checks
+        uses: clowdhaus/terraform-composite-actions/pre-commit@v1.11.0
+        with:
+          args: "--all-files --color always --show-diff-on-failure"
+          terraform-version: "1.9.7"
