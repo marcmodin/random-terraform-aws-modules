@@ -1,0 +1,12 @@
+telemetry: false
+auto_merge: true
+pr_locks: true
+traverse_to_nested_projects: true
+generate_projects:
+  blocks:
+    - include: "./live/prod/network/**"
+      aws_role_to_assume:
+        state: arn:aws:iam::xxxxxxxxxxxx:role/xxx
+    - include: "./live/prod/aft/**"
+      aws_role_to_assume:
+        state: arn:aws:iam::xxxxxxxxxxxx:role/xxx
