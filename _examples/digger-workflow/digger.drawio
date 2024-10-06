@@ -1,0 +1,248 @@
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.4 Safari/605.1.15" version="24.7.17">
+  <diagram name="Page-1" id="_xfy8G3brMabJQbjCC5w">
+    <mxGraphModel dx="1026" dy="1791" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="85AfOMCodYiveINTdbXn-158" value="Pull Request" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;fontStyle=1;dashed=1;arcSize=6;" vertex="1" parent="1">
+          <mxGeometry x="670" y="-60" width="140" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-77" value="&lt;b&gt;shared platform account&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;dashed=1;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="40" width="270" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-78" value="AssumeRoleWithWebIdentity" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1420" y="80" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" source="85AfOMCodYiveINTdbXn-80" target="85AfOMCodYiveINTdbXn-81" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-80" value="Digger Run" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-89" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-81" target="85AfOMCodYiveINTdbXn-88">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;div style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-style: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: none; box-sizing: border-box;&quot; data-index=&quot;139&quot;&gt;&lt;div style=&quot;box-sizing: border-box; line-height: 20px; color: var(--fgColor-default, var(--color-fg-default)); background-color: var(--bgColor-neutral-muted, var(--color-neutral-subtle)); display: flex !important;&quot; class=&quot;js-check-step-line CheckStep-line d-flex log-line-plain&quot;&gt;&lt;span style=&quot;box-sizing: border-box; overflow-x: auto; white-space: pre-wrap; flex: 1 1 auto !important; margin-left: var(--base-size-16, 16px) !important; display: inline-block !important;&quot; class=&quot;CheckStep-line-content d-inline-block flex-auto ml-3 js-check-line-content&quot;&gt;&lt;span style=&quot;box-sizing: border-box;&quot; class=&quot;&quot;&gt;Assuming role with OIDC&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" id="85AfOMCodYiveINTdbXn-81">
+          <mxCell style="text;whiteSpace=wrap;html=1;strokeColor=default;align=center;" vertex="1" parent="1">
+            <mxGeometry x="1080" y="135" width="160" height="30" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="85AfOMCodYiveINTdbXn-82" value="lock&amp;nbsp;&lt;div&gt;table&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=6;" vertex="1" parent="1">
+          <mxGeometry x="1610" y="80" width="40" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-83" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=none;startFill=0;" edge="1" source="85AfOMCodYiveINTdbXn-81" target="85AfOMCodYiveINTdbXn-86" parent="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1160" y="135" as="sourcePoint" />
+            <mxPoint x="1420" y="105" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="1160" y="105" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" source="85AfOMCodYiveINTdbXn-86" target="85AfOMCodYiveINTdbXn-78" parent="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-97" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-86" target="85AfOMCodYiveINTdbXn-96">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-86" value="ok" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1290" y="90" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-91" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-88" target="85AfOMCodYiveINTdbXn-90">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-100" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-88" target="85AfOMCodYiveINTdbXn-90">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;div style=&quot;caret-color: rgb(0, 0, 0); color: rgb(0, 0, 0); font-style: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; text-indent: 0px; text-transform: none; white-space: normal; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration: none; box-sizing: border-box;&quot; data-index=&quot;139&quot;&gt;&lt;div style=&quot;box-sizing: border-box; line-height: 20px; color: var(--fgColor-default, var(--color-fg-default)); background-color: var(--bgColor-neutral-muted, var(--color-neutral-subtle)); display: flex !important;&quot; class=&quot;js-check-step-line CheckStep-line d-flex log-line-plain&quot;&gt;&lt;span style=&quot;box-sizing: border-box; overflow-x: auto; white-space: pre-wrap; flex: 1 1 auto !important; margin-left: var(--base-size-16, 16px) !important; display: inline-block !important;&quot; class=&quot;CheckStep-line-content d-inline-block flex-auto ml-3 js-check-line-content&quot;&gt;&lt;span style=&quot;box-sizing: border-box;&quot; class=&quot;&quot;&gt;Install Digger&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;" id="85AfOMCodYiveINTdbXn-88">
+          <mxCell style="text;whiteSpace=wrap;html=1;strokeColor=default;align=center;" vertex="1" parent="1">
+            <mxGeometry x="1080" y="180" width="160" height="30" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="85AfOMCodYiveINTdbXn-95" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-90" target="85AfOMCodYiveINTdbXn-94">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-103" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-90" target="85AfOMCodYiveINTdbXn-77">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-104" value="&amp;nbsp;connect to account&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="85AfOMCodYiveINTdbXn-103">
+          <mxGeometry x="-0.2824" y="2" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <UserObject label="Setup Lock-Provider" id="85AfOMCodYiveINTdbXn-90">
+          <mxCell style="text;whiteSpace=wrap;html=1;strokeColor=default;align=center;" vertex="1" parent="1">
+            <mxGeometry x="1080" y="230" width="160" height="30" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="85AfOMCodYiveINTdbXn-102" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-94" target="85AfOMCodYiveINTdbXn-101">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;span style=&quot;white-space: pre-wrap;&quot;&gt;Parse Digger Config&lt;/span&gt;" id="85AfOMCodYiveINTdbXn-94">
+          <mxCell style="text;whiteSpace=wrap;html=1;strokeColor=default;align=center;" vertex="1" parent="1">
+            <mxGeometry x="1080" y="280" width="160" height="30" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="85AfOMCodYiveINTdbXn-96" value="token" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1280" y="135" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-112" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-101" target="85AfOMCodYiveINTdbXn-106">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="&lt;span style=&quot;white-space: pre-wrap;&quot;&gt;Process Github Event&lt;/span&gt;" id="85AfOMCodYiveINTdbXn-101">
+          <mxCell style="text;whiteSpace=wrap;html=1;strokeColor=default;align=center;fillColor=default;" vertex="1" parent="1">
+            <mxGeometry x="1080" y="330" width="160" height="30" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="85AfOMCodYiveINTdbXn-106" value="Project N" style="rounded=1;whiteSpace=wrap;html=1;verticalAlign=top;align=left;spacingLeft=11;arcSize=5;fillColor=#F2F2F2;" vertex="1" parent="1">
+          <mxGeometry x="1080" y="380" width="160" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-107" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="1450" y="435" width="210" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-108" value="&lt;b&gt;target account&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;verticalAlign=top;dashed=1;" vertex="1" parent="85AfOMCodYiveINTdbXn-107">
+          <mxGeometry width="210" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-109" value="AssumeRoleWithWebIdentity" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="85AfOMCodYiveINTdbXn-107">
+          <mxGeometry x="20" y="40" width="170" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-128" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-110" target="85AfOMCodYiveINTdbXn-113">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-149" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-110" target="85AfOMCodYiveINTdbXn-96">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-110" value="lock/unlock project" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="410" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-111" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-110" target="85AfOMCodYiveINTdbXn-82">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-115" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-113" target="85AfOMCodYiveINTdbXn-114">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-129" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-113" target="85AfOMCodYiveINTdbXn-121">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-113" value="if role_to_assume" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="460" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-117" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-114" target="85AfOMCodYiveINTdbXn-116">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-120" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;startArrow=classic;startFill=1;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-114" target="85AfOMCodYiveINTdbXn-109">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-114" value="ok" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1310" y="460" width="40" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-150" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-116">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="1330" y="560" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-116" value="token" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1300" y="510" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-124" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-121" target="85AfOMCodYiveINTdbXn-108">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-125" value="&amp;nbsp;connect to account&amp;nbsp;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="85AfOMCodYiveINTdbXn-124">
+          <mxGeometry x="0.0274" relative="1" as="geometry">
+            <mxPoint x="62" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-134" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-121" target="85AfOMCodYiveINTdbXn-133">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-163" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-121" target="85AfOMCodYiveINTdbXn-162">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-121" value="digger command" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="510" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-131" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-130" target="85AfOMCodYiveINTdbXn-80">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-130" value="Checkout" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-132" value="Complete Job" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="900" y="650" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-137" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-133" target="85AfOMCodYiveINTdbXn-135">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-133" value="export commands" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1090" y="570" width="140" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-138" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=-0.006;entryY=0.221;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-135" target="85AfOMCodYiveINTdbXn-106">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1015" y="433" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-143" value="repeat" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="85AfOMCodYiveINTdbXn-138">
+          <mxGeometry x="-0.3789" relative="1" as="geometry">
+            <mxPoint y="-44" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-140" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" target="85AfOMCodYiveINTdbXn-132">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="959.76" y="590.0000000000002" as="sourcePoint" />
+            <mxPoint x="959.76" y="645" as="targetPoint" />
+            <Array as="points" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-141" value="true" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="85AfOMCodYiveINTdbXn-140">
+          <mxGeometry x="0.1933" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-166" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-135" target="85AfOMCodYiveINTdbXn-165">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-135" value="done" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="935" y="565" width="50" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-156" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-152" target="85AfOMCodYiveINTdbXn-153">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-152" value="Opened/Syncronize" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="-30" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-154" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-153" target="85AfOMCodYiveINTdbXn-130">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-153" value="Start Workflow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f5f5f5;fontColor=#333333;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="900" y="-40" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-157" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-155" target="85AfOMCodYiveINTdbXn-153">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-155" value="Issue-comment" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="680" y="20" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-161" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-159" target="85AfOMCodYiveINTdbXn-158">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-159" value="merge" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="832.5" y="320" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-164" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-162" target="85AfOMCodYiveINTdbXn-159">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-162" value="successful&amp;nbsp;&lt;div&gt;apply&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="810" y="507.5" width="95" height="35" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-167" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="85AfOMCodYiveINTdbXn-165" target="85AfOMCodYiveINTdbXn-158">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="85AfOMCodYiveINTdbXn-165" value="comment" style="whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="695" y="567.5" width="90" height="35" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
