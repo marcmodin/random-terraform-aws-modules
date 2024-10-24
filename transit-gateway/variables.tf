@@ -25,13 +25,13 @@ variable "auto_accept_shared_attachments" {
 
 variable "default_route_table_association" {
   type        = string
-  default     = "disable"
+  default     = null
   description = "Whether resource attachments are automatically associated with the default association route table. Valid values: `disable`, `enable`. Default value: `enable`. When enabled, a default route-tables will be created. Forces replacement if changed"
 }
 
 variable "default_route_table_propagation" {
   type        = string
-  default     = "disable"
+  default     = null
   description = "Whether resource attachments automatically propagate routes to the default propagation route table. Valid values: `disable`, `enable`. Default value: `enable`. Forces replacement if changed"
 }
 

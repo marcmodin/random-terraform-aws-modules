@@ -1,9 +1,4 @@
 
-
-##############################################
-# Transit Gateway
-##############################################
-
 data "aws_region" "this" {}
 
 locals {
@@ -41,31 +36,28 @@ resource "aws_ec2_transit_gateway_route_table" "default" {
   }
 }
 
-# This part is not working as expected
-# the idea is that we should be able to assign specific route tables to be default for association and propagation tables
-# issue is that deletion fails since the default association and propagation need to be reset to the default route table.
+locals {
+  default_route_table        = { for key, value in aws_ec2_transit_gateway_route_table.default : key => value.id if var.route_tables[key].default_table == true }
+  create_default_association = var.create_route_tables && length([for k, v in local.default_route_table : k]) == 1 ? local.default_route_table : {}
 
-# locals {
-#   default_route_table        = { for key, value in aws_ec2_transit_gateway_route_table.default : key => value.id if var.route_tables[key].default_table == true }
-#   create_default_association = var.default_route_table_association == "enable" && var.create_route_tables && length([for k, v in local.default_route_table : k]) == 1 ? local.default_route_table : {}
+  default_route_table_propagation = { for key, value in aws_ec2_transit_gateway_route_table.default : key => value.id if var.route_tables[key].default_propagation == true }
+  create_default_propagation      = var.create_route_tables && length([for k, v in local.default_route_table_propagation : k]) == 1 ? local.default_route_table_propagation : {}
+}
 
-#   default_route_table_propagation = { for key, value in aws_ec2_transit_gateway_route_table.default : key => value.id if var.route_tables[key].default_propagation == true }
-#   create_default_propagation      = var.default_route_table_propagation == "enable" && var.create_route_tables && length([for k, v in local.default_route_table_propagation : k]) == 1 ? local.default_route_table_propagation : {}
-# }
 
-# # Create default route table association
-# resource "aws_ec2_transit_gateway_default_route_table_association" "default" {
-#   for_each                       = local.create_default_association
-#   transit_gateway_id             = aws_ec2_transit_gateway.default.id
-#   transit_gateway_route_table_id = each.value
-# }
+# Create default route table association
+resource "aws_ec2_transit_gateway_default_route_table_association" "default" {
+  for_each                       = local.create_default_association
+  transit_gateway_id             = aws_ec2_transit_gateway.default.id
+  transit_gateway_route_table_id = each.value
+}
 
-# # Create default route table propagation
-# resource "aws_ec2_transit_gateway_default_route_table_propagation" "default" {
-#   for_each                       = local.create_default_propagation
-#   transit_gateway_id             = aws_ec2_transit_gateway.default.id
-#   transit_gateway_route_table_id = each.value
-# }
+# Create default route table propagation
+resource "aws_ec2_transit_gateway_default_route_table_propagation" "default" {
+  for_each                       = local.create_default_propagation
+  transit_gateway_id             = aws_ec2_transit_gateway.default.id
+  transit_gateway_route_table_id = each.value
+}
 
 ##############################################
 # Resource Access Manager (RAM) Share
