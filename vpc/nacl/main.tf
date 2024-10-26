@@ -34,7 +34,6 @@ resource "aws_network_acl" "default" {
 
 
 resource "aws_network_acl_rule" "default_ingress" {
-
   network_acl_id = aws_network_acl.default.id
   rule_action    = "allow"
   rule_number    = 100

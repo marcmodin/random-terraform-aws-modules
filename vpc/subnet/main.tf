@@ -31,12 +31,11 @@ variable "tags" {
   description = "Tags to apply to all resources"
 }
 
-
 resource "aws_subnet" "default" {
   vpc_id                  = var.vpc_id
   availability_zone_id    = var.availability_zone_id
   cidr_block              = var.cidr_block
-  map_public_ip_on_launch = var.map_public_ip_on_launch # prevent auto public ip assignment
+  map_public_ip_on_launch = var.map_public_ip_on_launch # prevent auto public ip assignment by default
 
   tags = merge(var.tags, {
     Name = var.name
@@ -67,6 +66,7 @@ resource "aws_route_table" "default" {
   }
 }
 
+# Associate the subnet with the route table
 resource "aws_route_table_association" "default" {
   subnet_id = aws_subnet.default.id
   # Use element() to "wrap around" and allow for a single table to be associated with all subnets
@@ -89,7 +89,14 @@ output "availability_zone_id" {
   value = aws_subnet.default.availability_zone_id
 }
 
+output "route_table_name" {
+  value = aws_route_table.default.tags["Name"]
+}
+
 output "route_table_id" {
   value = aws_route_table.default.id
 }
 
+output "class" {
+  value = aws_subnet.default.tags["Class"]
+}
