@@ -1,11 +1,11 @@
 module "wrapper" {
   source = "./vpc_ai"
 
-  name       = var.name
-  cidr_block = var.cidr_block
-  az_count   = var.az_count
-  subnets    = local.subnets
-  transit_gateway_id = var.transit_gateway_id
+  name                   = var.name
+  cidr_block             = var.cidr_block
+  az_count               = var.az_count
+  subnets                = local.subnets
+  transit_gateway_id     = var.transit_gateway_id
   transit_gateway_routes = local.transit_gateway_routes
 
   vpc_flow_logs = var.vpc_flow_logs_enabled ? {

@@ -108,14 +108,14 @@ resource "aws_vpc_ipam_pool_cidr_allocation" "transit_gateway_allocation" {
 }
 
 module "transit_gateway" {
-  source                      = "../../_modules/tgw"
-  name_prefix                 = format("%s-%s", var.name_prefix, var.region)
-  amazon_side_asn             = 64512
+  source          = "../../_modules/tgw"
+  name_prefix     = format("%s-%s", var.name_prefix, var.region)
+  amazon_side_asn = 64512
   # use the allocated cidr block from the pool
   transit_gateway_cidr_blocks = [aws_vpc_ipam_pool_cidr_allocation.transit_gateway_allocation.cidr]
-  
+
   # use the the default route table for all attachment associations and propagations
-  create_route_tables         = false
+  create_route_tables             = false
   default_route_table_association = "enable"
   default_route_table_propagation = "enable"
 

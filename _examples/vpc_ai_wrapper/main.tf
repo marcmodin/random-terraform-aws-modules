@@ -3,14 +3,14 @@
 ####################################################################
 
 module "transit_gateway" {
-  source                          = "../../_modules/tgw"
-  name_prefix                     = format("%s-%s", var.name_prefix, var.region)
-  amazon_side_asn                 = 64512
+  source          = "../../_modules/tgw"
+  name_prefix     = format("%s-%s", var.name_prefix, var.region)
+  amazon_side_asn = 64512
 
   create_route_tables = true
   route_tables = {
-    spokes     = {default_table = true} # default_table = true dont work
-    inspection = {default_propagation = true} # default_propagation = true dont work
+    spokes     = { default_table = true }       # default_table = true dont work
+    inspection = { default_propagation = true } # default_propagation = true dont work
   }
 
   resource_share_principals = [] # local.resource_share_principals_merged
@@ -29,13 +29,13 @@ output "transit_gateway" {
 ####################################################################
 
 module "vpc_egress" {
-  source       = "../../_modules/vpc_wrapper"
-  name         = format("%s-egress-vpc", var.name_prefix) # name from snap
-  cidr_block   = "10.0.0.0/25" # small, medui
-  az_count     = 2
+  source                    = "../../_modules/vpc_wrapper"
+  name                      = format("%s-egress-vpc", var.name_prefix) # name from snap
+  cidr_block                = "10.0.0.0/25"                            # small, medui
+  az_count                  = 2
   nat_gateway_configuration = "none"
-  network_type = "egress"
-  transit_gateway_id = module.transit_gateway.id
+  network_type              = "egress"
+  transit_gateway_id        = module.transit_gateway.id
 }
 
 # Override the default route table association set on Transit Gateway
@@ -57,10 +57,10 @@ resource "aws_ec2_transit_gateway_route" "egress" {
 ####################################################################
 
 module "vpc_spoke" {
-  source       = "../../_modules/vpc_wrapper"
-  name         = format("%s-spoke-vpc",var.name_prefix)
-  cidr_block   = "10.0.0.128/25"
-  az_count     = 2
-  network_type = "spoke"
+  source             = "../../_modules/vpc_wrapper"
+  name               = format("%s-spoke-vpc", var.name_prefix)
+  cidr_block         = "10.0.0.128/25"
+  az_count           = 2
+  network_type       = "spoke"
   transit_gateway_id = module.transit_gateway.id
 }
