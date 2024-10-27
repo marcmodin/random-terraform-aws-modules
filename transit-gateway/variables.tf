@@ -17,6 +17,12 @@ variable "amazon_side_asn" {
   default     = 64512
 }
 
+variable "transit_gateway_cidr_blocks" {
+  type        = list(string)
+  description = "List of CIDR blocks to associate with the transit gateway. Needed for connect or VPN attachment"
+  default     = []
+}
+
 variable "auto_accept_shared_attachments" {
   type        = string
   default     = "enable"

@@ -1,4 +1,3 @@
-
 data "aws_region" "this" {}
 
 locals {
@@ -8,6 +7,7 @@ locals {
 resource "aws_ec2_transit_gateway" "default" {
   description                        = format("%s tgw for %s", var.name_prefix, local.this_region)
   amazon_side_asn                    = var.amazon_side_asn
+  transit_gateway_cidr_blocks        = var.transit_gateway_cidr_blocks
   auto_accept_shared_attachments     = var.auto_accept_shared_attachments
   default_route_table_association    = var.default_route_table_association
   default_route_table_propagation    = var.default_route_table_propagation
