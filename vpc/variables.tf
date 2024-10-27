@@ -33,15 +33,9 @@ variable "ipv4_ipam_pool_id" {
   default     = null
 }
 
-variable "ipv4_cidr_block_association" {
-  type = object({
-    ipv4_ipam_pool_id   = string
-    ipv4_netmask_length = optional(number, null)
-  })
-  description = <<-EOT
-    Configuration of the VPC's primary IPv4 CIDR block via IPAM. Conflicts with `ipv4_cidr_block`.
-    One of `ipv4_cidr_block` or `ipv4_cidr_block_association` must be set.
-    EOT
+variable "ipv4_netmask_length" {
+  description = "Set to use IPAM to get an IPv4 CIDR block using a specified netmask. Must be set with `var.ipv4_ipam_pool_id`."
+  type        = string
   default     = null
 }
 
@@ -112,8 +106,8 @@ variable "transit_gateway_association" {
   type = object({
     id                                 = string
     subnet_group                       = string
-    security_group_referencing_support = optional(string, "disable")
-    dns_support                        = optional(string, "disable")
+    security_group_referencing_support = optional(string, "enable")
+    dns_support                        = optional(string, "enable")
     appliance_mode_support             = optional(string, "disable")
     default_route_table_association    = optional(bool, true)
     default_route_table_propagation    = optional(bool, true)

@@ -19,8 +19,8 @@ locals {
   # Check if IPAM is enabled
   ipam_enabled = var.ipv4_ipam_pool_id != null && var.ipv4_cidr_block == null
 
-  # Determine the appropriate CIDR block to use
-  vpc_cidr_block = var.ipv4_cidr_block != null ? var.ipv4_cidr_block : try(data.aws_vpc_ipam_preview_next_cidr.default[0].cidr, null)
+  # # Determine the appropriate CIDR block to use
+  # vpc_cidr_block = var.ipv4_cidr_block != null ? var.ipv4_cidr_block : try(data.aws_vpc_ipam_preview_next_cidr.default[0].cidr, null)
 
   existing_az_count = var.max_zones != null ? var.max_zones : length(data.aws_availability_zones.available.zone_ids)
 
@@ -35,9 +35,9 @@ locals {
 
 # create the VPC, TODO: add more options
 resource "aws_vpc" "default" {
-  cidr_block                           = local.vpc_cidr_block
-  ipv4_ipam_pool_id                    = try(var.ipv4_ipam_pool_id, null)
-  ipv4_netmask_length                  = null
+  cidr_block                           = var.ipv4_cidr_block # local.vpc_cidr_block
+  ipv4_ipam_pool_id                    = var.ipv4_ipam_pool_id
+  ipv4_netmask_length                  = var.ipv4_netmask_length
   instance_tenancy                     = var.instance_tenancy
   enable_dns_hostnames                 = var.enable_dns_hostnames
   enable_dns_support                   = var.enable_dns_support
@@ -47,9 +47,9 @@ resource "aws_vpc" "default" {
     Name = "${var.name_prefix}-vpc"
   })
 
-  lifecycle {
-    ignore_changes = [cidr_block, ipv4_ipam_pool_id, ipv4_netmask_length]
-  }
+  # lifecycle {
+  #   ignore_changes = [cidr_block, ipv4_ipam_pool_id, ipv4_netmask_length]
+  # }
 }
 
 ####################################################################
@@ -97,7 +97,8 @@ resource "aws_default_network_acl" "default" {
 
 # AFTER VPC CREATION LOCALS SUBNETS CALCULATIONS
 locals {
-
+  # Determine the appropriate CIDR block to use
+  vpc_cidr_block           = aws_vpc.default.cidr_block
   az_to_use                = slice(data.aws_availability_zones.available.zone_ids, 0, local.existing_az_count)
   vpc_allocated_cidr_block = aws_vpc.default.cidr_block
   cidr_netmask             = tonumber(split("/", local.vpc_allocated_cidr_block)[1])
@@ -146,6 +147,8 @@ module "subnet" {
   tags = merge(var.tags, {
     Class = each.value.group
   })
+
+  depends_on = [aws_vpc.default]
 }
 
 # AFTER SUBNET CREATION LOCALS

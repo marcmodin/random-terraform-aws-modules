@@ -3,7 +3,7 @@ data "aws_organizations_organization" "org" {}
 locals {
   this_root_ou           = data.aws_organizations_organization.org.id
   this_master_account_id = data.aws_organizations_organization.org.master_account_id
-  ou_root_prefix = format("arn:aws:organizations::%s:ou/%s/", local.this_master_account_id, local.this_root_ou)
+  ou_root_prefix         = format("arn:aws:organizations::%s:ou/%s/", local.this_master_account_id, local.this_root_ou)
 
   # a map of accounts and OUs to share the resource with (nested ou's need to be in format 'ou-xxxx-xxxxxxx/ou-xxxx-xxxxxxx')
   resource_share_principals = {
@@ -17,7 +17,7 @@ locals {
 
   resource_share_principals_cleaned = {
     accounts = local.resource_share_principals.accounts
-    ous     = [for ou in local.resource_share_principals.ous : format("%s%s", local.ou_root_prefix, ou)]
+    ous      = [for ou in local.resource_share_principals.ous : format("%s%s", local.ou_root_prefix, ou)]
   }
 
   resource_share_principals_merged = concat(local.resource_share_principals_cleaned.accounts, local.resource_share_principals_cleaned.ous)

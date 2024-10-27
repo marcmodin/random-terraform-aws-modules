@@ -1,19 +1,4 @@
-# VPC Management Module
-
-This Terraform module simplifies the creation and management of an Amazon Virtual Private Cloud (VPC) along with its associated resources.
-
-By leveraging this module, users can efficiently deploy robust and secure network infrastructures tailored to their specific subnet requirements, ensuring best practices in network segmentation, security, and manageability.
-
-See examples in `_examples/`
-
-### Key Features
-
-- Customizable VPC Configuration: Define CIDR blocks or allocate from AWS IPAM, enable DNS support, and configure DHCP options.
-- Subnet Management: Create multiple subnets grouped by logical names (e.g., management, middleware) with dynamic CIDR allocation based on specified netmasks.
-- Subnet Route Tables: By default a route table is created for each subnet based on its group.
-- Network Security: Configure custom Network ACLs with detailed ingress and egress rules to control traffic flow per subnet group.
-- VPC Default Resources: Automatically take control over automatically VPC created resources such as Default Security Groups, Default Nacls and Default Route Tables. As best practice these should not be used.
-- Transit Gateway Integration: Attach the VPC to a Transit Gateway for scalable and centralized network routing.
+# AWS Terraform Network Module
 
 ### Simple Subnet Table
 
