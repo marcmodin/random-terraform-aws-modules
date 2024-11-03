@@ -31,12 +31,18 @@ module "security_group" {
 #################################
 # Get Amazon Linux AMIs
 #################################
+
 data "aws_ami" "default" {
   most_recent = true
   owners      = ["amazon"]
   filter {
     name   = "name"
-    values = ["al2023-ami-2023*"]
+    values = [var.ami_name_filter]
+  }
+
+  filter {
+    name   = "architecture"
+    values = [var.ami_architecture]
   }
 }
 

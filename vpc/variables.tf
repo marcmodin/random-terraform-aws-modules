@@ -100,57 +100,6 @@ networks = [
 EOT
 }
 
-
-
-variable "transit_gateway_association" {
-  type = object({
-    id                                 = string
-    subnet_group                       = string
-    security_group_referencing_support = optional(string, "enable")
-    dns_support                        = optional(string, "enable")
-    appliance_mode_support             = optional(string, "disable")
-    default_route_table_association    = optional(bool, true)
-    default_route_table_propagation    = optional(bool, true)
-    default_transit_gateway_route      = optional(string, "0.0.0.0/0")
-    association_route_table_id         = optional(string, null)
-    propagation_route_table_id         = optional(string, null)
-  })
-
-  description = <<EOT
-This variable defines the configuration for the Transit Gateway Attachment with various settings.
-
-- **id** (`string`): The unique identifier of the Transit Gateway to create an attachment for.
-- **subnet_group** (`string`): The name the subnet group to associate with the Transit Gateway Attachment.
-- **security_group_referencing_support** (`optional(string, "disable")`): 
-  - **Description**: Enables or disables support for cross VPC referencing security groups.
-  - **Default**: "disable"
-- **dns_support** (`optional(string, "disable")`): 
-  - **Description**: Enables or disables DNS support on the Transit Gateway Attachment.
-  - **Default**: "disable"
-- **appliance_mode_support** (`optional(string, "disable")`): 
-  - **Description**: Enables or disables appliance mode support, which allows for integration with third-party appliances.
-  - **Default**: "disable"
-- **default_route_table_association** (`optional(bool, true)`): 
-  - **Description**: Specifies whether to associate the default route table with the Transit Gateway Attachment. Set it to false if you need to manage this outside of the module.
-  - **Default**: `true`
-- **default_route_table_propagation** (`optional(bool, true)`): 
-  - **Description**: Specifies whether to propagate routes to the default route table of the Transit Gateway Attachement. Set it to false if you need to manage this outside of the module.
-  - **Default**: `true`
-- **default_transit_gateway_route** (`optional(string, "0.0.0.0/0")`): 
-  - **Description**: Defines the default route to Transit Gateway on all route-tables.
-  - **Default**: "0.0.0.0/0"
-- **association_route_table_id** (`optional(string, null)`): 
-  - **Description**: The ID of the specific route table to associate with the Transit Gateway Attachment. If not provided, the default route table is used. Use this to override the default route table association.
-  - **Default**: `null`
-- **propagation_route_table_id** (`optional(string, null)`): 
-  - **Description**: The ID of the specific route table to propagate routes to from the Transit Gateway. If not provided, the default route table is used. Use this to override the default route table association.
-  - **Default**: `null`
-EOT
-
-  default = null
-}
-
-
 variable "network_acls" {
   type = map(object({
     ingress = list(object({
@@ -222,3 +171,52 @@ network_acls = {
 ```
 EOT
 }
+
+variable "transit_gateway_association" {
+  type = object({
+    id                                 = string
+    subnet_group                       = string
+    security_group_referencing_support = optional(string, "enable")
+    dns_support                        = optional(string, "enable")
+    appliance_mode_support             = optional(string, "disable")
+    default_route_table_association    = optional(bool, true)
+    default_route_table_propagation    = optional(bool, true)
+    default_transit_gateway_route      = optional(string, "0.0.0.0/0")
+    association_route_table_id         = optional(string, null)
+    propagation_route_table_id         = optional(string, null)
+  })
+
+  description = <<EOT
+This variable defines the configuration for the Transit Gateway Attachment with various settings.
+
+- **id** (`string`): The unique identifier of the Transit Gateway to create an attachment for.
+- **subnet_group** (`string`): The name the subnet group to associate with the Transit Gateway Attachment.
+- **security_group_referencing_support** (`optional(string, "disable")`): 
+  - **Description**: Enables or disables support for cross VPC referencing security groups.
+  - **Default**: "disable"
+- **dns_support** (`optional(string, "disable")`): 
+  - **Description**: Enables or disables DNS support on the Transit Gateway Attachment.
+  - **Default**: "disable"
+- **appliance_mode_support** (`optional(string, "disable")`): 
+  - **Description**: Enables or disables appliance mode support, which allows for integration with third-party appliances.
+  - **Default**: "disable"
+- **default_route_table_association** (`optional(bool, true)`): 
+  - **Description**: Specifies whether to associate the default route table with the Transit Gateway Attachment. Set it to false if you need to manage this outside of the module.
+  - **Default**: `true`
+- **default_route_table_propagation** (`optional(bool, true)`): 
+  - **Description**: Specifies whether to propagate routes to the default route table of the Transit Gateway Attachement. Set it to false if you need to manage this outside of the module.
+  - **Default**: `true`
+- **default_transit_gateway_route** (`optional(string, "0.0.0.0/0")`): 
+  - **Description**: Defines the default route to Transit Gateway on all route-tables.
+  - **Default**: "0.0.0.0/0"
+- **association_route_table_id** (`optional(string, null)`): 
+  - **Description**: The ID of the specific route table to associate with the Transit Gateway Attachment. If not provided, the default route table is used. Use this to override the default route table association.
+  - **Default**: `null`
+- **propagation_route_table_id** (`optional(string, null)`): 
+  - **Description**: The ID of the specific route table to propagate routes to from the Transit Gateway. If not provided, the default route table is used. Use this to override the default route table association.
+  - **Default**: `null`
+EOT
+
+  default = null
+}
+
