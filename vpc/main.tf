@@ -74,11 +74,29 @@ resource "aws_default_network_acl" "default" {
   }
 }
 
+####################################################################
+# Flow Logs
+####################################################################
+
+module "flow_logs" {
+  source   = "./log"
+  for_each = var.enable_flow_log ? { "default" = true } : {}
+  name     = "${var.name_prefix}-vpc-flow-log"
+  vpc_id   = aws_vpc.default.id
+
+  configuration = var.flow_log_configuration
+
+  tags = merge(var.tags, {
+    Name = "${var.name_prefix}-fl"
+  })
+}
+
 #################################################################### 
 # Network Calculation Logic
 #
-# Important If the number of networks and requested netmasks per subnet is greater than the total available network space of the vpc_cidr_block, you need to adjust the number of networks to create. 
-# error: "Invalid value for 'newbits' parameter: not enough remaining address space for a subnet with a prefix of 26 bits after 10.0.0.64/26."
+# Important: If the number of networks and requested netmasks per subnet is greater than the total available network space of the vpc_cidr_block, you need to adjust the number of networks to create. 
+#
+# eg. 'error: "Invalid value for 'newbits' parameter: not enough remaining address space for a subnet with a prefix of 26 bits after 10.0.0.64/26."'
 #
 ####################################################################
 
@@ -213,7 +231,7 @@ module "nacl-rules" {
 ####################################################################
 
 # Transit Gateway Attachment for one Subnet Group
-module "tgw-attachment" {
+module "tgw_attachment" {
   source             = "./tgw-att"
   for_each           = var.transit_gateway_association != null ? { "default" = true } : {}
   vpc_id             = aws_vpc.default.id
@@ -243,12 +261,12 @@ module "tgw-attachment" {
 ####################################################################
 
 # Transit Gateway Attachement Route
-module "tgw-attachment-route" {
+module "tgw_attachment_route" {
   source                 = "./route"
   for_each               = var.transit_gateway_association != null ? local.subnets_created : {}
   route_table_id         = each.value.route_table_id
   transit_gateway_id     = lookup(var.transit_gateway_association, "id", null)
   destination_cidr_block = lookup(var.transit_gateway_association, "default_transit_gateway_route", null)
 
-  depends_on = [module.tgw-attachment]
+  depends_on = [module.tgw_attachment]
 }

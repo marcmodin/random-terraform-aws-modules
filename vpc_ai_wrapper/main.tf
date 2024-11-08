@@ -1,5 +1,5 @@
 module "wrapper" {
-  source   = "aws-ia/vpc/aws"
+  source  = "aws-ia/vpc/aws"
   version = ">= 4.2.0"
 
   name                   = var.name

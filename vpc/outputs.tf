@@ -49,7 +49,7 @@ output "subnets_by_group" {
 }
 
 output "transit_gateway_attachment" {
-  value       = try(module.tgw-attachment, null)
+  value       = try(module.tgw_attachment, null)
   description = "Transit Gateway Attachment module output."
 }
 

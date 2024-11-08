@@ -16,6 +16,17 @@ variable "enable_network_address_usage_metrics" {
   default     = false
 }
 
+variable "enable_flow_log" {
+  type        = bool
+  description = "Enable flow logs for the VPC. Requires `flow_log_configuration.log_destination`."
+  default     = false
+
+  validation {
+    condition     = var.enable_flow_log == false || var.flow_log_configuration != null
+    error_message = "flow_log_configuration must be set when enable_flow_log is true"
+  }
+}
+
 variable "name_prefix" {
   type        = string
   description = "Prefix to apply to all resources. "
@@ -62,6 +73,24 @@ variable "tags" {
   description = "Tags to apply to all resources"
 }
 
+
+
+variable "flow_log_configuration" {
+  type = object({
+    log_format               = optional(string, "$${interface-id} $${srcaddr} $${dstaddr} $${srcport} $${dstport}")
+    log_destination          = optional(string)
+    traffic_type             = optional(string, "ALL")
+    max_aggregation_interval = optional(number, 600)
+    destination_options = optional(object({
+      file_format                = optional(string, "plain-text")
+      per_hour_partition         = optional(bool, false)
+      hive_compatible_partitions = optional(bool, false)
+    }))
+  })
+
+  default = null
+
+}
 
 variable "networks" {
   type = list(object({
