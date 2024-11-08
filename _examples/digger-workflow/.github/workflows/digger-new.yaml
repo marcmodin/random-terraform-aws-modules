@@ -1,14 +1,5 @@
 name: Digger Default Workflow
 
-# on:
-#   pull_request:
-#     branches: ["main"]
-#     types: [opened, synchronize, reopened]
-#     paths:
-#       - "**.tf"
-#   issue_comment:
-#     types: [created]
-
 on:
   pull_request:
     branches: ["main"]

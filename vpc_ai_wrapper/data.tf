@@ -4,7 +4,7 @@ locals {
     egress = {
       public = {
         netmask                   = 28
-        nat_gateway_configuration = var.nat_gateway_configuration # options: "multi_az", "single_az", "none"
+        nat_gateway_configuration = var.nat_gateway_configuration # options: "all_azs", "single_az", "none"
       }
       # IPv4 only subnet
       management = {
@@ -13,18 +13,18 @@ locals {
         netmask                 = 28
         connect_to_public_natgw = var.nat_gateway_configuration != "none" ? true : false
       }
-      transit_gateway = {
-        netmask                                         = 28
-        transit_gateway_default_route_table_association = false
-        transit_gateway_default_route_table_propagation = false
-        connect_to_public_natgw                         = var.nat_gateway_configuration != "none" ? true : false
-        transit_gateway_appliance_mode_support          = "disable"
-        transit_gateway_dns_support                     = "enable"
+      # transit_gateway = {
+      #   netmask                                         = 28
+      #   transit_gateway_default_route_table_association = false
+      #   transit_gateway_default_route_table_propagation = false
+      #   connect_to_public_natgw                         = var.nat_gateway_configuration != "none" ? true : false
+      #   transit_gateway_appliance_mode_support          = "disable"
+      #   transit_gateway_dns_support                     = "enable"
 
-        tags = {
-          subnet_type = "tgw"
-        }
-      }
+      #   tags = {
+      #     subnet_type = "tgw"
+      #   }
+      # }
     },
     spoke = {
       # IPv4 only subnet

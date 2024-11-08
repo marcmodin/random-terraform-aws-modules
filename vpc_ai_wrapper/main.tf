@@ -1,5 +1,6 @@
 module "wrapper" {
-  source = "./vpc_ai"
+  source   = "aws-ia/vpc/aws"
+  version = ">= 4.2.0"
 
   name                   = var.name
   cidr_block             = var.cidr_block
