@@ -1,0 +1,61 @@
+name: Digger Default Workflow
+
+# on:
+#   pull_request:
+#     branches: ["main"]
+#     types: [opened, synchronize, reopened]
+#     paths:
+#       - "**.tf"
+#   issue_comment:
+#     types: [created]
+
+on:
+  pull_request:
+    branches: ["main"]
+    types: [closed, opened, synchronize, reopened]
+    paths:
+      - "**.tf"
+  issue_comment:
+    types: [created]
+    if: contains(github.event.comment.body, 'digger')
+  workflow_dispatch:
+
+jobs:
+  digger-job:
+    runs-on: ubuntu-latest
+    # trigger job on pull_request or related issue_comment events
+    # if: ${{ contains(github.event_name, 'pull_request') || startsWith(github.event.comment.body, 'digger') }}
+    permissions:
+      id-token: write # required for workload-identity-federation
+      # contents: read # required for checkout
+
+      # If you need to pass in the GITHUB_TOKEN to digger, remove content: read and uncomment the following lines
+      contents: write # required to merge PRs
+      actions: write # required for plan persistence
+      pull-requests: write # required to post PR comments
+      issues: write
+      statuses: write # required to validate combined PR status
+
+    steps:
+      - name: Configure Git Credentials
+        shell: bash
+        run: |
+          git config --global url."https://oauth2:${{ secrets.GH_PAT_TOKEN }}@github.com".insteadOf ssh://git@github.com
+          git config --global url."https://token:${{ secrets.GH_PAT_TOKEN }}@github.com/".insteadOf "https://github.com/"
+
+      # - name: Checkout
+      #   uses: actions/checkout@v4
+
+      - name: Digger Run
+        uses: diggerhq/digger@v0.6.44
+        with:
+          no-backend: true
+          upload-plan-destination: "github"
+          setup-aws: true
+          aws-role-to-assume: arn:aws:iam::739275474968:role/aft-terraform-deploy-demo-role # this is still used for locking
+          aws-region: eu-north-1
+          configure-checkout: true
+        env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_TOKEN: ${{ secrets.GH_PAT_TOKEN }}
