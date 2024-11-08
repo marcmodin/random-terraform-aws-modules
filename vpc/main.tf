@@ -5,22 +5,9 @@ data "aws_availability_zones" "available" {
   state = "available"
 }
 
-# Preview next CIDR from pool
-data "aws_vpc_ipam_preview_next_cidr" "default" {
-  count          = var.ipv4_cidr_block == null ? 1 : 0
-  ipam_pool_id   = var.ipv4_ipam_pool_id
-  netmask_length = 25
-}
-
 # BEFORE VPC CREATION LOCALS
 locals {
   region = data.aws_region.this.name
-
-  # Check if IPAM is enabled
-  ipam_enabled = var.ipv4_ipam_pool_id != null && var.ipv4_cidr_block == null
-
-  # # Determine the appropriate CIDR block to use
-  # vpc_cidr_block = var.ipv4_cidr_block != null ? var.ipv4_cidr_block : try(data.aws_vpc_ipam_preview_next_cidr.default[0].cidr, null)
 
   existing_az_count = var.max_zones != null ? var.max_zones : length(data.aws_availability_zones.available.zone_ids)
 
@@ -88,14 +75,13 @@ resource "aws_default_network_acl" "default" {
 }
 
 #################################################################### 
-# Network Calculation
+# Network Calculation Logic
 #
 # Important If the number of networks and requested netmasks per subnet is greater than the total available network space of the vpc_cidr_block, you need to adjust the number of networks to create. 
 # error: "Invalid value for 'newbits' parameter: not enough remaining address space for a subnet with a prefix of 26 bits after 10.0.0.64/26."
 #
 ####################################################################
 
-# AFTER VPC CREATION LOCALS SUBNETS CALCULATIONS
 locals {
   # Determine the appropriate CIDR block to use
   vpc_cidr_block           = aws_vpc.default.cidr_block
@@ -253,12 +239,8 @@ module "tgw-attachment" {
 }
 
 ####################################################################
-# Routes 
+# Transit Gateway Route 
 ####################################################################
-
-# output "public_subnets_to_create" {
-#   value = local.is_public_subnet_map
-# }
 
 # Transit Gateway Attachement Route
 module "tgw-attachment-route" {
