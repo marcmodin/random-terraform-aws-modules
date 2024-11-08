@@ -51,3 +51,46 @@ module "transit_gateway" {
 output "transit_gateway" {
   value = module.transit_gateway
 }
+
+# # Find the pool RAM shared to your account
+# # Info on RAM sharing pools: https://docs.aws.amazon.com/vpc/latest/ipam/share-pool-ipam.html
+# data "aws_vpc_ipam_pools" "default" {
+#   # filter {
+#   #   name   = "description"
+#   #   values = ["Production pool for the *"]
+#   # }
+
+#   filter {
+#     name   = "tag:Environment"
+#     values = ["prod"]
+#   }
+
+#   filter {
+#     name   = "address-family"
+#     values = ["ipv4"]
+#   }
+
+#   filter {
+#     name   = "locale"
+#     values = [var.region]
+#   }
+
+#   depends_on = [module.ipam-aws]
+# }
+
+# locals {
+#   pools = {
+#     for value in data.aws_vpc_ipam_pools.default.ipam_pools : value.locale => value.id
+#   }
+# }
+
+
+# resource "aws_vpc_ipam_pool_cidr_allocation" "transit_gateway_allocation" {
+#   ipam_pool_id = values(local.pools)[0]
+#   cidr         = "10.0.0.0/24"
+#   depends_on   = [module.ipam-aws]
+# }
+
+# output "transit_gateway_allocation" {
+#   value = aws_vpc_ipam_pool_cidr_allocation.transit_gateway_allocation
+# }
