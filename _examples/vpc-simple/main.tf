@@ -1,10 +1,16 @@
 
 data "aws_caller_identity" "this" {}
 
-# create an s3 bucket
-resource "aws_s3_bucket" "flow_log_bucket" {
-  bucket        = "flow-log-bucket-${data.aws_caller_identity.this.account_id}"
-  force_destroy = true
+
+# Centralized flow log destination
+module "flow_logs" {
+  source                  = "cloudposse/vpc-flow-logs-s3-bucket/aws"
+  version                 = "1.3.0"
+  bucket_name             = format("%s-flow-logs-%s", var.name_prefix, data.aws_caller_identity.this.account_id)
+  bucket_key_enabled      = true
+  force_destroy           = true
+  flow_log_enabled        = false
+  allow_ssl_requests_only = true
 }
 
 module "vpc" {
@@ -29,7 +35,7 @@ module "vpc" {
   ]
 
   flow_log_configuration = {
-    log_destination = aws_s3_bucket.flow_log_bucket.arn
+    log_destination = module.flow_logs.bucket_arn
     log_format      = "$${interface-id} $${srcaddr} $${dstaddr} $${srcport} $${dstport}"
     destination_options = {
       file_format                = "parquet"
