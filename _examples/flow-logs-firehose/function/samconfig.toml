@@ -1,0 +1,12 @@
+version=0.1
+[default]
+
+[default.build.parameters]
+hook_name = "terraform"
+beta_features = true
+terraform_project_root_path = "../../"
+
+[default.local.invoke.parameters]
+debug = true
+hook_name = "terraform"
+beta_features = true

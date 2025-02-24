@@ -1,0 +1,82 @@
+{
+  "custom_source_events": {
+    "source_name": "aws-transit-gateway-flow-log",
+    "matched_field": "$.event.event_type",
+    "timestamp": {
+      "field": "$.start",
+      "format": "epoch"
+    },
+    "ocsf_mapping": {
+      "netflow": {
+        "schema": "network_activity",
+        "schema_mapping": {
+          "metadata": {
+            "profiles": "cloud,transit-gateway",
+            "version": "v2",
+            "product": {
+              "name": "AWS Transit Gateway Flow Logs",
+              "vendor_name": "AWS",
+              "feature": {
+                "name": "Transit Gateway"
+              }
+            }
+          },
+          "app_name": "$.resource-type",
+          "severity": "Informational",
+          "severity_id": 1,
+          "category_uid": 4,
+          "category_name": "Network Activity",
+          "class_uid": 4001,
+          "class_name": "Network Activity",
+          "type_uid": 400106,
+          "activity_id": 6,
+          "activity_name": "Traffic",
+          "dst_endpoint": {
+            "ip": "$.dstaddr",
+            "port": "$.dstport"
+          },
+          "src_endpoint": {
+            "ip": "$.srcaddr",
+            "port": "$.srcport"
+          },
+          "time": "$.start",
+          "connection_info": {
+            "uid": "$.tgw-id",
+            "protocol_name": "$.protocol",
+            "tcp_flags": "$.tcp-flags"
+          },
+          "start_time": "$.start",
+          "end_time": "$.end",
+          "traffic": {
+            "bytes": "$.bytes",
+            "packets": "$.packets"
+          },
+          "unmapped": {
+            "availability_zone_src": "$.tgw-src-az-id",
+            "availability_zone_dst": "$.tgw-dst-az-id",
+            "log_status": "$.log-status",
+            "type": "$.type",
+            "flow_direction": "$.flow-direction",
+            "pkt_src_aws_service": "$.pkt-src-aws-service",
+            "pkt_dst_aws_service": "$.pkt-dst-aws-service",
+            "account_id": "$.account-id",
+            "tgw_attachment_id": "$.tgw-attachment-id",
+            "tgw_src_vpc_id": "$.tgw-src-vpc-id",
+            "tgw_dst_vpc_id": "$.tgw-dst-vpc-id",
+            "tgw_src_subnet_id": "$.tgw-src-subnet-id",
+            "tgw_dst_subnet_id": "$.tgw-dst-subnet-id",
+            "tgw_src_eni": "$.tgw-src-eni",
+            "tgw_dst_eni": "$.tgw-dst-eni",
+            "tgw_pair_attachment_id": "$.tgw-pair-attachment-id",
+            "tgw_src_vpc_account_id": "$.tgw-src-vpc-account-id",
+            "tgw_dst_vpc_account_id": "$.tgw-dst-vpc-account-id",
+            "packets_lost_no_route": "$.packets-lost-no-route",
+            "packets_lost_blackhole": "$.packets-lost-blackhole",
+            "packets_lost_mtu_exceeded": "$.packets-lost-mtu-exceeded",
+            "packets_lost_ttl_expired": "$.packets-lost-ttl-expired"
+          }
+        }
+      }
+    }
+  }
+}
